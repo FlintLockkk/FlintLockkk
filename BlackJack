@@ -1,0 +1,94 @@
+import java.util.Scanner;
+import java.util.Random;
+
+public class BlackJack {
+    
+    Scanner sc = new Scanner(System.in);
+    Random rd = new Random();
+    
+    int hrac = 0;
+    String odpovedHrac = "";
+    int hrac1 = 0;
+    int dealer = 0;
+    int dealer1 = 0;
+    int dealer2 =0;
+    
+    public void stol(){
+        while(true){
+            
+            System.out.print(">");
+            odpovedHrac = sc.nextLine();
+            hrac(odpovedHrac);
+            dealer(odpovedHrac);
+            
+        }
+    }
+    
+    public void hrac(String odpovedd){
+        if(hrac1 <=21 && odpovedHrac.equals("karta")){
+                
+               
+            if(odpovedHrac.equals("karta")){
+                hrac = rd.nextInt(11);
+                    if(hrac == 0){
+                        hrac =+1;
+                    }
+                    System.out.println(hrac);
+                    
+            }
+            hrac1 += hrac; 
+                
+            if (hrac1>21){
+                System.out.println("Prehrali ste");
+                        
+                }
+                  
+                    System.out.println("carty sucet: "+hrac1);
+    }else if(! odpovedHrac.equals("stat")&& !odpovedHrac.equals("karta")){
+            System.out.println("Neplatny prikaz");
+        }
+    }
+                  
+  
+    public void dealer(String odpovedd){      
+            if(odpovedHrac.equals("stat")&& hrac1 <=21){
+               
+                if(dealer1 <=17){
+                    while(dealer2<17){
+                    dealer = rd.nextInt(11);
+                    dealer2 +=dealer;
+                    }
+                  }
+            dealer1+=dealer2;
+            
+            if(dealer1 >21){
+                System.out.println("Vyhrali ste");
+                System.out.println("Vas pocet: "+hrac1+"\n"+"Dealerov pocet: "+dealer2);
+            
+            }else if(dealer1 < hrac1){
+                System.out.println("Vyhrali ste");
+                System.out.println("Vas pocet: "+hrac1+"\n"+"Dealerov pocet: "+dealer2); 
+            
+            }else if(dealer1 >hrac1){
+                System.out.println("Prehrali ste");
+                System.out.println("Vas pocet: "+hrac1+"\n"+"Dealerov pocet: "+dealer2);
+                
+            }
+        }
+            
+    }
+            
+            
+            
+        
+       
+      
+        
+        
+    
+    
+    public static void main(String[] args){
+        BlackJack black = new BlackJack();
+        black.stol();
+    }    
+}
